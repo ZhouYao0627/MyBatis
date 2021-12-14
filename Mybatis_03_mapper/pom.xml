@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.atguigu.mb</groupId>
-    <artifactId>MyBatis_02_config</artifactId>
+    <artifactId>Mybatis_03_mapper</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -27,11 +27,20 @@
             <version>1.18.18</version>
         </dependency>
         <!-- 日志 -->
+        <!--        <dependency>-->
+        <!--            <groupId>log4j</groupId>-->
+        <!--            <artifactId>log4j</artifactId>-->
+        <!--            <version>1.2.17</version>-->
+        <!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+            <scope>test</scope>
         </dependency>
+
 
         <!-- Junit -->
         <dependency>

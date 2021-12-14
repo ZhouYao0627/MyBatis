@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 /**
  * 1.接口式编程
@@ -74,6 +75,7 @@ public class MyBatisTest {
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
 
         // 弹幕：使用反射，解析sql，动态生成接口的实现类
+
         // 2.获取sqlSession对象
         SqlSession openSession = sqlSessionFactory.openSession();
 
@@ -81,8 +83,68 @@ public class MyBatisTest {
         // 只要将接口与xml文件动态绑定，MyBatis就会为接口自动的创建一个代理对象，代理对象去执行增删改查
         try {
             EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);
-            Employee employee = mapper.getEmpById2(1);
+            Employee employee = mapper.getEmpById(1);
             System.out.println(employee);
+        } finally {
+            openSession.close();
+        }
+    }
+
+    /**
+     * 测试增删改
+     * 1.mybatis允许增删改直接定义以下类型返回值
+     *      Integer，Long，Boolean，void
+     * 2.需要手动提交数据
+     *      sqlSessionFactory.openSession();  --> 手动提交
+     *      sqlSessionFactory.openSession(true); --> 自动提交
+     */
+    @Test
+    public void test03() throws IOException {
+        // 1.获取sqlSessionFactory对象
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        // 2.获取sqlSession对象 --> (此次选择)不会自动提交数据
+        SqlSession openSession = sqlSessionFactory.openSession();
+
+        try {
+            // 3.获取接口实现类对象
+
+            EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);
+            // 3.1 测试添加
+            mapper.addEmp(new Employee(null, "Jerry", "Jerry@qq.com", "1"));
+
+            // 3.2 测试修改
+//            boolean updateEmp = mapper.updateEmp(new Employee(1, "Tom", "JoJo@qq.com", "1"));
+//            System.out.println(updateEmp);
+
+            // 3.3 测试删除
+//            mapper.deleteEmpById(2);
+
+            // 4.手动提交数据
+            openSession.commit();
+        } finally {
+            openSession.close();
+        }
+    }
+
+    @Test
+    public void test04() throws IOException {
+        // 1.获取sqlSessionFactory对象
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        // 2.获取sqlSession对象 --> (此次选择)不会自动提交数据
+        SqlSession openSession = sqlSessionFactory.openSession(true);
+
+        try {
+            // 3.获取接口实现类对象
+            EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);
+            // 测试添加
+//            Employee employee = mapper.getEmpByIdAndLastName(1, "Tom");
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("id", 1);
+            map.put("lastname", "Tom");
+            Employee employee = mapper.getEmpByMap(map);
+            System.out.println(employee);
+
         } finally {
             openSession.close();
         }
