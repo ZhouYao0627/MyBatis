@@ -1,15 +1,28 @@
 package com.atguigu.mybatis.bean;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  @author：ZhouYao
  @create：2021-12-09 17:15
  */
+
+@Alias("emp")
 public class Employee {
 
     private Integer id;
     private String lastname;
     private String email;
     private String gender;
+    private Department dept;
+
+    public Department getDept() {
+        return dept;
+    }
+
+    public void setDept(Department dept) {
+        this.dept = dept;
+    }
 
     public Employee() {
     }

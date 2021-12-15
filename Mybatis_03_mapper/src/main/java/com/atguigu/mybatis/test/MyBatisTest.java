@@ -1,7 +1,10 @@
 package com.atguigu.mybatis.test;
 
+import com.atguigu.mybatis.bean.Department;
 import com.atguigu.mybatis.bean.Employee;
+import com.atguigu.mybatis.dao.DepartmentMapper;
 import com.atguigu.mybatis.dao.EmployeeMapper;
+import com.atguigu.mybatis.dao.EmployeeMapperPlus;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,6 +14,8 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 1.接口式编程
@@ -62,7 +67,7 @@ public class MyBatisTest {
         SqlSession openSession = sqlSessionFactory.openSession();
 
         try {
-            Employee employee = openSession.selectOne("com.atguigu.mybatis.dao.EmployeeMapper.getEmpById2", 1);
+            Employee employee = openSession.selectOne("com.atguigu.mybatis.dao.EmployeeMapper.getEmpById", 1);
             System.out.println(employee);
         } finally {
             openSession.close();
@@ -139,15 +144,78 @@ public class MyBatisTest {
             EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);
             // 测试添加
 //            Employee employee = mapper.getEmpByIdAndLastName(1, "Tom");
-            HashMap<String, Object> map = new HashMap<>();
-            map.put("id", 1);
-            map.put("lastname", "Tom");
-            Employee employee = mapper.getEmpByMap(map);
-            System.out.println(employee);
+
+//            HashMap<String, Object> map = new HashMap<>();
+//            map.put("id", 1);
+//            map.put("lastname", "Tom");
+//            Employee employee = mapper.getEmpByMap(map);
+//            System.out.println(employee);
+
+            List<Employee> like = mapper.getEmpsByLastNameLike("%e%");
+
+            for (Employee employee : like) {
+                System.out.println(employee);
+            }
+
+//            Map<String, Object> map = mapper.getEmpByIdReturnMap(1);
+//            System.out.println(map);
+
+            Map<String, Employee> map = mapper.getEmpByLastNameLikeReturnMap("%o%");
+            System.out.println(map);
+
 
         } finally {
             openSession.close();
         }
+    }
+
+    @Test
+    public void test05() throws IOException {
+
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        SqlSession openSession = sqlSessionFactory.openSession(true);
+
+        try {
+            EmployeeMapperPlus mapper = openSession.getMapper(EmployeeMapperPlus.class);
+//            Employee empById = mapper.getEmpById(1);
+//            System.out.println(empById);
+
+//            Employee empAndDept = mapper.getEmpAndDept(1);
+//            System.out.println(empAndDept);
+//            System.out.println(empAndDept.getDept());
+
+            Employee employee = mapper.getEmpByIdStep(1);
+            System.out.println(employee.getLastname());
+            System.out.println(employee.getDept());
+
+        } finally {
+            openSession.close();
+        }
+    }
+
+    @Test
+    public void test06() throws IOException {
+
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        SqlSession openSession = sqlSessionFactory.openSession(true);
+
+        try {
+            DepartmentMapper mapper = openSession.getMapper(DepartmentMapper.class);
+//            Department department = mapper.getDeptByIdPlus(1);
+//            System.out.println(department);
+//            System.out.println(department.getEmps());
+
+            Department deptByIdStep = mapper.getDeptByIdStep(1);
+            System.out.println(deptByIdStep.getDepartmentName());
+            System.out.println(deptByIdStep.getEmps());
+
+        } finally {
+            openSession.close();
+        }
+
+
     }
 
 
