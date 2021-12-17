@@ -8,6 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Mybatis_04_DynamicSQL" />
+        <module name="Mybatis_06_ssm" />
+        <module name="Mybatis_05_cache" />
         <module name="MyBatis_01_HelloWorld" />
         <module name="Mybatis_03_mapper" />
         <module name="MyBatis_02_config" />
@@ -19,6 +21,8 @@
       <module name="Mybatis_03_mapper" target="13" />
       <module name="MyBatis_03_mapper" target="13" />
       <module name="Mybatis_04_DynamicSQL" target="13" />
+      <module name="Mybatis_05_cache" target="13" />
+      <module name="Mybatis_06_ssm" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
