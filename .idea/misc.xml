@@ -12,6 +12,9 @@
         <option value="$PROJECT_DIR$/Mybatis_04_DynamicSQL/pom.xml" />
         <option value="$PROJECT_DIR$/Mybatis_05_cache/pom.xml" />
         <option value="$PROJECT_DIR$/Mybatis_06_ssm/pom.xml" />
+        <option value="$PROJECT_DIR$/Mybatis_07_mbg/pom.xml" />
+        <option value="$PROJECT_DIR$/Mybatis_09_source/pom.xml" />
+        <option value="$PROJECT_DIR$/Mybatis_10_plugin/pom.xml" />
       </list>
     </option>
   </component>

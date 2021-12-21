@@ -9,6 +9,9 @@
       <module fileurl="file://$PROJECT_DIR$/Mybatis_04_DynamicSQL/Mybatis_04_DynamicSQL.iml" filepath="$PROJECT_DIR$/Mybatis_04_DynamicSQL/Mybatis_04_DynamicSQL.iml" />
       <module fileurl="file://$PROJECT_DIR$/Mybatis_05_cache/Mybatis_05_cache.iml" filepath="$PROJECT_DIR$/Mybatis_05_cache/Mybatis_05_cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/Mybatis_06_ssm/Mybatis_06_ssm.iml" filepath="$PROJECT_DIR$/Mybatis_06_ssm/Mybatis_06_ssm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mybatis_07_mbg/Mybatis_07_mbg.iml" filepath="$PROJECT_DIR$/Mybatis_07_mbg/Mybatis_07_mbg.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mybatis_09_source/Mybatis_09_source.iml" filepath="$PROJECT_DIR$/Mybatis_09_source/Mybatis_09_source.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mybatis_10_plugin/Mybatis_10_plugin.iml" filepath="$PROJECT_DIR$/Mybatis_10_plugin/Mybatis_10_plugin.iml" />
     </modules>
   </component>
 </project>
